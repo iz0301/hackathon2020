@@ -8,16 +8,14 @@ import datetime
 import pickle
 import numpy as np
 
-
 cgitb.enable()
 
 form = cgi.FieldStorage()
-if "username" not in form or "content" not in form or "interestPercent" not in form:
+if "content" not in form or "interestPercent" not in form:
     print("Content-Type: text/html\n\n")
     sys.exit(0)
 
 #A check: print("Hello " + form['username'].value)
-username_in = form['username'].value
 content_in = form['content'].value
 interestPercent_in = form['interestPercent'].value
 
@@ -32,8 +30,11 @@ if 'HTTP_COOKIE' in os.environ:
 #Hopefully, handler now has all 3 cookies we want.
 #Now, do checks with these cookies:
 if handler[0] == 1: #(Checked if logged in)
-    if handler[2] == '/var/www/hack2020/'+username_in+'/'+'password.txt':
+    if handler[2] == '/var/www/hack2020/'+handler[1]+'/'+'password.txt':
         username_in = handler[1]
+    else:
+        print('Wrong password!')
+        quit()
 
 #Define the mechanism to save posts' data to a file:
 def save_postdata(obj, filename):
@@ -54,7 +55,7 @@ class genPost:
     date = ""
     epoch_sec = 0
     
-    def __init__(self, username, content, principal, interestPercent):
+    def __init__(self, username, content, interestPercent):
         self.username = username
         self.content = content
         self.principal = principal
@@ -66,13 +67,11 @@ class genPost:
         self.date = date
         self.postID = postID
 
-
 #Generate a post:
-post1_content = "Hello World - Give me money pls"
-post1 = genPost(username_in, post1_content, 1000, 5)
+post = genPost(username_in, content_in, interestPercent_in)
 #Checks:
-#print(post1.text)
-#print(post1.date)
+#print(post.text)
+#print(post.date)
 
 #Save the post:
-save_postdata(post1, '/var/www/hack2020/'+post1.username+'/post'+post1.post_id+'.pkl')
+save_postdata(post, '/var/www/hack2020/'+post.username+'/post'+post.post_id+'.pkl')
