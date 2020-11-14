@@ -6,7 +6,7 @@ import os
 import time
 import datetime
 import pickle
-import numpy as np
+#import numpy as np
 
 cgitb.enable()
 
@@ -63,10 +63,13 @@ class genPost:
         #Get the time (since epoch) that we ran this script/instantiated this class, and then turn this into a "date posted" string:
         epoch_sec = time.time()
         date = datetime.datetime.fromtimestamp(epoch_sec)
-        postID = len(os.listdir('/var/www/hack2020/'+username+'/post/')) + 1
+        postID = len(os.listdir('/var/www/hack2020/'+username+'/posts/')) + 1
         self.date = date
         self.postID = postID
 
+#If the posts folder is not created yet, create it:
+if os.exists('/var/www/hack2020/'+username+'/posts/'):
+    os.mkdir('/var/www/hack2020/'+username+'/posts/')
 #Generate a post:
 post = genPost(username_in, content_in, interestPercent_in)
 #Checks:
@@ -74,4 +77,4 @@ post = genPost(username_in, content_in, interestPercent_in)
 #print(post.date)
 
 #Save the post:
-save_postdata(post, '/var/www/hack2020/'+post.username+'/post'+post.post_id+'.pkl')
+save_postdata(post, '/var/www/hack2020/'+post.username+'/posts/post'+post.post_id+'.pkl')
