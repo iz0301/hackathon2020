@@ -30,7 +30,7 @@ def save_password(obj, filename):
 if not os.path.exists('/var/www/hack2020/'+username+'/'):
     os.mkdir('/var/www/hack2020/'+username+'/')
     save_password(password, '/var/www/hack2020/'+username+'/'+'password.txt')
- else:
+else:
  	print('You are already signed up. Contact an administrator if you forgot your password.')
 
 #Now, log them in straight away:
