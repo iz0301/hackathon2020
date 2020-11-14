@@ -15,6 +15,8 @@ if "content" not in form or "interestPercent" not in form:
     print("Content-Type: text/html\n\n")
     sys.exit(0)
 
+print("Content-Type: text/html\n\n")
+
 #A check: print("Hello " + form['username'].value)
 content_in = form['content'].value
 interestPercent_in = form['interestPercent'].value
@@ -29,12 +31,19 @@ if 'HTTP_COOKIE' in os.environ:
         handler[cookie[0]] = cookie[1]
 #Hopefully, handler now has all 3 cookies we want.
 #Now, do checks with these cookies:
-if handler[0] == 1: #(Checked if logged in)
-    if handler[2] == '/var/www/hack2020/'+handler[1]+'/'+'password.txt':
-        username_in = handler[1]
+username = ""
+if 'logged_in' in handler and handler['logged_in'] == '1': #(Checked if logged in)
+    with open('/var/www/hack2020/'+handler['username']+'/'+'password.txt','r') as file:
+        fp = file.read()
+
+    if handler['password'].strip() == fp.strip():
+        username = handler['username']
     else:
         print('Wrong password!')
         quit()
+else:
+    print('not logged in')
+    quit()
 
 #Define the mechanism to save posts' data to a file:
 def save_postdata(obj, filename):
@@ -58,7 +67,6 @@ class genPost:
     def __init__(self, username, content, interestPercent):
         self.username = username
         self.content = content
-        self.principal = principal
         self.interestPercent = interestPercent
         #Get the time (since epoch) that we ran this script/instantiated this class, and then turn this into a "date posted" string:
         epoch_sec = time.time()
@@ -68,13 +76,14 @@ class genPost:
         self.postID = postID
 
 #If the posts folder is not created yet, create it:
-if os.exists('/var/www/hack2020/'+username+'/posts/'):
+if not os.path.exists('/var/www/hack2020/'+username+'/posts/'):
     os.mkdir('/var/www/hack2020/'+username+'/posts/')
+
 #Generate a post:
-post = genPost(username_in, content_in, interestPercent_in)
+post = genPost(username, content_in, interestPercent_in)
 #Checks:
 #print(post.text)
 #print(post.date)
 
 #Save the post:
-save_postdata(post, '/var/www/hack2020/'+post.username+'/posts/post'+post.post_id+'.pkl')
+save_postdata(post, '/var/www/hack2020/'+post.username+'/posts/post'+str(post.postID)+'.pkl')
