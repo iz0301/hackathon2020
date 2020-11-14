@@ -27,4 +27,4 @@ def save_password(obj, filename):
 #If the username folder is not created yet, create it, and the password.txt file:
 if not os.path.exists('/var/www/hack2020/'+username+'/'):
     os.mkdir('/var/www/hack2020/'+username+'/')
-    save_password(password, '/var/www/hack2020/'+username+'/'+'password.txt'')
+    save_password(password, '/var/www/hack2020/'+username+'/'+'password.txt')
