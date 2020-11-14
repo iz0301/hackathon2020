@@ -5,13 +5,15 @@ import cgitb
 import sys
 
 cgitb.enable()
-print("Content-Type: text/html\n\n")
+#print 'Set-Cookie: lastvisit=' + str(time.time());
 
 form = cgi.FieldStorage()
 if "username" not in form or "password" not in form:
-    print("<H1>Error</H1>")
-    print("Please fill in the username and password fields.")
+    print('Set-Cookie: username=');
+    print('Set-Cookie: password=');
+    print("Content-Type: text/html\n\n")
     sys.exit(0)
+
 
 #A check: print("Hello " + form['username'].value +" "+ form['lastname'].value)
 username_in = form['username'].value
@@ -23,6 +25,15 @@ with open(passwordfilename, 'r') as file:
     password_from_file = file.read()
 
 if password_from_file.strip() == password_in.strip():
-    print("Login successful, " + username_in)
+    #print("Login successful, " + username_in)
+    print('Set-Cookie: logged_in=1');
+    print('Set-Cookie: username=' + username_in);
+    print('Set-Cookie: password=' + password_in.strip());
 else:
-    print("Login unsuccessful, " + username_in)   
+    #print("Login unsuccessful, " + username_in)
+    print('Set-Cookie: logged_in=0');
+    print('Set-Cookie: username=' + username_in);
+    print('Set-Cookie: password=' + password_in.strip());
+
+
+print("Content-Type: text/html\n\n")
