@@ -1,6 +1,7 @@
 import time
 import datetime
 import pickle
+import numpy as np
 #Define the mechanism to save posts' data to a file:
 def save_postdata(obj, filename):
     with open(filename, 'wb') as output:  # Overwrites any existing file.
@@ -8,33 +9,36 @@ def save_postdata(obj, filename):
 
 #Class to generate a post and its data:
 class genPost:
-    author = None
+    author = ""
+    content = ""
+    interestPercent = 0
+    postID = 0
     likes = 0
-    addedLikes = 0
-    loans = 0
-    addedLoans = 0
-    epoch_sec = 0
+    whoLiked = []
+    loans = {}
+    whoLoaned = []
     date = ""
-    text = ""
-    def __init__(self, author, text):
+    epoch_sec = 0
+    
+    def __init__(self, author, content, interestPercent):
         self.author = author
-        self.text = text
-    #Get the time (since epoch) that we ran this script/instantiated this class, and then turn this into a date posted string:
-    import time
-    import datetime
-    epoch_sec = time.time()
-    date = datetime.datetime.fromtimestamp(epoch_sec)
+        self.content = content
+        self.interestPercent = interestPercent
+        #Get the time (since epoch) that we ran this script/instantiated this class, and then turn this into a "date posted" string:
+        epoch_sec = time.time()
+        date = datetime.datetime.fromtimestamp(epoch_sec)
+        postID = len(os.listdir('/var/www/hack2020/'+author+'/post/')) + 1
+        self.date = date
+        self.postID = postID
+
 
 #Generate a post:
-post1 = genPost("Clark V", "Hello World")
+username_in = "clarkvan33" #Ideally this will be acheived with cookies, not this manual input
+post1_content = "Hello World - Give me money pls"
+post1 = genPost(username_in, post1_content, 5)
 #Checks:
-print(post1.author)
-print(post1.text)
-#print(post1.time) #Will be a large integer (seconds since 1970)
-print(post1.date)
-#print(post1.likes) #Should be zero, for now
+#print(post1.text)
+#print(post1.date)
 
 #Save the post:
-save_postdata(post1, 'post1.pkl')
-
-#Now, I have begun to look into CGI: Common Gateway Interface, to convert a user's website interactions to the nedded variables to make the post.
+save_postdata(post1, '/var/www/hack2020/'+post1.author+'/post'+post1.post_id+'.pkl')
