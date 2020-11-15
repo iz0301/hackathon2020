@@ -28,7 +28,7 @@ loan_stats = {'amt_money': amt_money, 'interestRate': interestPercent / 100, 'to
 
 #Define the mechanism to save loans' data to the correct files:
 def save_data(obj, filename):
-    f = open(filename,'a')
+    f = open(filename,'w')
     f.write(obj)
     f.close()
 
