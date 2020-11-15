@@ -185,7 +185,7 @@ hr {
 
 <div id="id01" class="modal" style="text-align:center;">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/hackathon2020/site/scripts/signup.py" method="POST" style="float:center" onsubmit="return goToSite()">
+  <form target="hiddenFrame" class="modal-content" action="/hackathon2020/site/scripts/signup.py" method="POST" style="float:center" onsubmit="goToSite()">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Welcome to Friendly Lends! Create an account to get started.</p>
@@ -213,7 +213,7 @@ hr {
 <div id="id02" class="modal2" style="text-align:center;">
   	<span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
      		<br>
-	<form class="modal2-content" action="/hackathon2020/site/scripts/login.py" style="border:1px solid #ccc; text-align:center;" method="POST" onsubmit="return checkCookie()">
+	<form target="hiddenFrame" class="modal2-content" action="/hackathon2020/site/scripts/login.py" style="border:1px solid #ccc; text-align:center;" method="POST" onsubmit="return checkCookie()">
   	<div class="container">
     	<h1>Friendly Lends Login</h1>
 
@@ -224,7 +224,7 @@ hr {
 	<input type="password" placeholder="Enter Password" name="password" required>
 		<br>
         <div class="clearfix">
-     	<button type="submit" class="loginbtn" onclick="checkCookie()">Login</button>
+     	<button type="submit" class="loginbtn">Login</button>
 	</div> 
    </div>
  </form>
@@ -265,8 +265,8 @@ function getCookie(cname) {
 
 function checkCookie() {
   var status = getCookie("logged_in");
-  if (user != 1) {
-    alert("Wrong username and/or password.”);
+  if (status != '1') {
+    alert("Wrong username and/or password.");
   } else {
 alert("Login Successful");
 setTimeout(function() {window.location = "http://zachmann.hopto.org/hackathon2020/site/html/HomePage.html"});
@@ -276,11 +276,12 @@ setTimeout(function() {window.location = "http://zachmann.hopto.org/hackathon202
 
 function goToSite() {
 setTimeout(function() {window.location = "http://zachmann.hopto.org/hackathon2020/site/html/HomePage.html"});
-  }
 }
 
 </script>
 
+<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 </body>
 </html>
+
 
