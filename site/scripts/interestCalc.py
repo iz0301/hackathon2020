@@ -67,6 +67,7 @@ dirname2 = '/var/www/hack2020/'+to+'/'
 #Define the function to calculate the financial data from the inputs:
 def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
     # This program calculates repayments on an interest rate loan/mortgage, and stores the stats in a dictionary
+    flag=0
     if(don_or_loan == 'donation'):
         totalOwed = 0
         numPayments = 0
@@ -76,6 +77,7 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
         sys.exit(0)
     elif(don_or_loan != 'loan'):
         print("Must be a 'Donation' or a 'Loan', got: " + don_or_loan)
+        flag = 1
         sys.exit(0)
     interestRate = interestPercent / 100
     if (flag != 1):
