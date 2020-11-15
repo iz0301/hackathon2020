@@ -21,6 +21,7 @@ print("Content-Type: text/html\n\n")
 #A check: print("Hello " + form['username'].value)
 content_in = form['content'].value
 interestPercent_in = form['interestPercent'].value
+amt_money_in = form['amt_money'].value
 
 #Read the cookies that have been established:
 handler = {}
@@ -52,6 +53,7 @@ def save_postdata(post, filename):
     data['username'] = post.username
     data['content'] = post.content
     data['interestPercent'] = post.interestPercent
+    data['amt_money'] = post.amt_money
     data['postID'] = post.postID
     data['loans'] = post.loans
     data['whoLoaned'] = post.whoLoaned
@@ -66,15 +68,17 @@ class genPost:
     content = ""
     interestPercent = 0
     postID = 0
+    amt_money = 0
     loans = {}
     whoLoaned = []
     date = ""
     epoch_sec = 0
     
-    def __init__(self, username, content, interestPercent):
+    def __init__(self, username, content, interestPercent, amt_money):
         self.username = username
         self.content = content
         self.interestPercent = interestPercent
+        self.amt_money = amt_money
         #Get the time (since epoch) that we ran this script/instantiated this class, and then turn this into a "date posted" string:
         epoch_sec = time.time()
         epoch_sec_est = epoch_sec - 14400 #Remove 4 hours from the post times, to convert to EST
@@ -88,7 +92,7 @@ if not os.path.exists('/var/www/hack2020/'+username+'/posts/'):
     os.mkdir('/var/www/hack2020/'+username+'/posts/')
 
 #Generate a post:
-post = genPost(username, content_in, interestPercent_in)
+post = genPost(username, content_in, interestPercent_in, amt_money_in)
 #Checks:
 #print(post.text)
 #print(post.date)

@@ -17,18 +17,20 @@ if "username" not in form or "password" not in form:
 #A check: print("Hello " + form['username'].value)
 username = form['username'].value
 password = form['password'].value
+amt_money = 1000 #Default starting money value - substitute for linking your bank account
 
 #Define the mechanism to save posts' data to a file:
-def save_password(obj, filename):
+def save_data(obj, filename):
 	f = open(filename,'w')
 	f.write(obj)
 	f.close()
 
-#If the username folder is not created yet, create it, and the password.txt, and the posts directory:
+#If the username folder is not created yet, create it, and create the password.txt and amt_money.txt files. Also, make the posts directory:
 if not os.path.exists('/var/www/hack2020/'+username+'/'):
     os.mkdir('/var/www/hack2020/'+username+'/')
     os.mkdir('/var/www/hack2020/'+username+'/posts/')
-    save_password(password, '/var/www/hack2020/'+username+'/'+'password.txt')
+    save_data(password, '/var/www/hack2020/'+username+'/'+'password.txt')
+    save_data(amt_money, '/var/www/hack2020/'+username+'/'+'amt_money.txt')
 else:
     print("Content-Type: text/html\n\n")
     print('You are already signed up. Contact an administrator if you forgot your password. Otherwise, we will log you in now.')
