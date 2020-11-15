@@ -56,8 +56,9 @@ def save_postdata(post, filename):
     data['loans'] = post.loans
     data['whoLoaned'] = post.whoLoaned
     data['date'] = post.date
-    with open(filename, 'wb') as outfile:  # Overwrites any existing file.
-        json.dumps(data, outfile)
+    print(data)
+    with open(filename, 'w') as outfile:  # Overwrites any existing file.
+        json.dump(data, outfile)
 
 #Class to generate a post and its data:
 class genPost:
@@ -76,7 +77,7 @@ class genPost:
         self.interestPercent = interestPercent
         #Get the time (since epoch) that we ran this script/instantiated this class, and then turn this into a "date posted" string:
         epoch_sec = time.time()
-        date = datetime.datetime.fromtimestamp(epoch_sec)
+        date = str(datetime.datetime.fromtimestamp(epoch_sec))
         postID = len(os.listdir('/var/www/hack2020/'+username+'/posts/')) + 1
         self.date = date
         self.postID = postID
