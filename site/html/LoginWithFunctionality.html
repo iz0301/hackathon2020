@@ -264,24 +264,19 @@ function getCookie(cname) {
 
 function checkCookie() {
   var status = getCookie("logged_in");
-  if (user != 1) {
+  if (status != 1) {
     alert("Wrong username and/or password.”);
   } else {
 alert("Login Successful");
-setTimeout(function() {window.location = "/HomePage.html/"});
+setTimeout(function() {window.location = "http://zachmann.hopto.org/hackathon2020/site/html/HomePage.html"});
   }
 }
 
 
 function goToSite() {
-setTimeout(function() {window.location = "/HomePage.html/"});
+setTimeout(function() {window.location = "http://zachmann.hopto.org/hackathon2020/site/html/HomePage.html"});
   }
 }
-
-
-
-
-
 
 
 </script>
