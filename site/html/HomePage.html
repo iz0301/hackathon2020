@@ -131,7 +131,7 @@ height: 90px;
 
 
   <div id="generic_post" style="visibility:hidden">
-    <form id = "post_form" action="/hackathon2020/site/scripts/interestCalc.py" method="POST">
+    <form target="hiddenFrame" id="post_form" action="/hackathon2020/site/scripts/interestCalc.py" method="POST">
   	<p1 class = "username" style="text-align:left;" name = "to">username</p1>
     	<p2 class = "interestPercent" style="float:right;" name = "to">interest amount</p2>
 	<p6 style="float:right;">Interest %:</p6>
@@ -151,8 +151,8 @@ height: 90px;
 	<input style="visibility:hidden" class="form_to" name="to" value="" type="text">
     	</div>
 	<div>
-   	<button type="donbttn" style ="align:left;" onclick="donate(this)" value ="Donate">Donate</button>
-   	<button type="loanbttn" style="float:right;" onclick="loan(this)" value ="Loan">Loan</button>
+   	<button type="donbttn" style ="align:left;" onclick="alert('Thanks');donate(this);" value ="Donate">Donate</button>
+   	<button type="loanbttn" style="float:right;" onclick="alert('Thanks');loan(this);" value ="Loan">Loan</button>
  	</div>
      </form>
   </div>
@@ -181,5 +181,5 @@ height: 90px;
 
 </body>
 </html>
-
+<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 <script src="feed.js"></script>
