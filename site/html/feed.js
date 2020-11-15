@@ -26,7 +26,10 @@ getJSON('/hackathon2020/site/scripts/sortPosts.py',  function(err, posts) {
 		post.getElementsByClassName('username')[0].innerHTML = un;
 		post.getElementsByClassName('content')[0].innerHTML = con;
 		post.getElementsByClassName('interestPercent')[0].innerHTML= ip;
-		post.getElementsByClassName('postID')[0].innerHTML = data.postID;
+		post.getElementsByClassName('form_interestPercent')[0].setAttribute("value", ip);
+		post.getElementsByClassName('repayLength')[0].setAttribute("value", '5');
+		post.getElementsByClassName('form_to')[0].setAttribute("value", un);
+		post.getElementsByClassName('postID')[0].setAttribute("value",data.postID);
 		document.getElementById('feed').innerHTML += post.innerHTML;
 	}	
 	});
