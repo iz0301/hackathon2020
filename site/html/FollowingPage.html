@@ -103,29 +103,33 @@ input{
 <body>
 
 <div class="header">
-  <h1>Lend-a-Friend</h1>
+  <h1>Friendly Lends</h1>
 </div>
 
 <div class="navbar">
-  <a class="active" href="file:///C:/Users/sgrcr/Documents/HomePage.html">Home</a>
-  <a href="file:///C:/Users/sgrcr/Documents/NavigatePage.html">Lends Out</a>
-  <a href="address2">Posted Lends</a>
-<a href="file:///C:/Users/sgrcr/Documents/FollowersPage.html">Friends</a>
-
+  <a href="/hackathon2020/site/html/HomePage.html">Home</a>
+  <a href="/hackathon2020/site/html/LendedHistory.html">Your Lends</a>
+  <a href="/hackathon2020/site/html/PostedHistoryPage.html">Your Posts</a>
+  <a href="/hackathon2020/site/html/FollowingPage.html">Friends</a>
+  <a href="/hackathon2020/site/html/MakePostPage.html">Make a Post</a>
 </div>
 
-  <div class="friend list">
- <form action="/hackathon2020/site/scripts/follow.py" method="POST">
-  <input type="checkbox" id="clarkvan33" name="username" value = "clarkvan33" checked="checked">
-  <label for="clarkvan33">clarkvan33</label><br>
-  <input type="checkbox" id="caldrich" name="username" value = "caldrich" checked="checked">
-  <label for="caldrich">caldrich</label><br>
-  <input type="checkbox" id="sylvia" name="username" value = "sylvia" checked="checked">
-  <label for="sylvia">sylvia</label><br>
-  <input type="checkbox" id="isaac" name="username" value = "isaac" checked="checked">
-  <label for="isaac">isaac</label><br>
-  <input type="submit" value="Update Followers">
+
+<div style="visibility: hidden" id="generic_friend">
+  <input class="input_box" type="checkbox" name="username" value="">
+  <p class="name" style="display:inline"></p>
+  <br>
+</div>	
+ <form action="/hackathon2020/site/scripts/follow.py" method="POST" target="hiddenFrame">
+
+  <div id="friend_list">
+ </div>
+ <input type="submit" value="Update Followers">
 </form>
 
+<script src="follow_list.js"></script>
   
- </div>
+  </body>
+<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
+</html>
+
