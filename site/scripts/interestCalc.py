@@ -6,10 +6,11 @@ import sys
 import os
 
 cgitb.enable()
+print("Content-Type: text/html\n\n")
 
 form = cgi.FieldStorage()
-if ("amt_money" not in form or "interestPercent" not in form or "don_or_loan" not in form or "repay_Length" not in form or "to" not in form):
-    print("field not in form")
+if ("amt_money" not in form or "interestPercent" not in form or "don_or_loan" not in form or "repayLength" not in form or "to" not in form):
+    print("field not in form: " + str(form))
     sys.exit(0)
 
 #A check: print("Hello " + form['username'].value)
@@ -41,7 +42,7 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
         repayLength = 0
         intervalPay = 0
     elif(don_or_loan != 'loan'):
-        print("Must be a 'Donation' or a 'Loan'")
+        print("Must be a 'Donation' or a 'Loan', got: " + don_or_loan)
         sys.exit(0)
 
     interval = "month"

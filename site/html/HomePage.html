@@ -130,39 +130,27 @@ height: 80px;
 
 
   <div id="generic_post" style="visibility:hidden">
-    
-    <form id = "form1">
-  <p1 class = "username" style="text-align:left;" name = "to">username</p1>
-
-    <p2 class = "interestPercent" style="float:right;" name = "to">interest amount</p2>
-    <br>
-    </form>
-    
-    <div style = "text-align: center;">
-    <p3 class = "content" class = "p3">message content</p3>
-    </div>
-      
-    <br>
-    
-    <div style  = "text-align: center;">
-      
-    <form id = "form2">
-     <input type = "text" id = "amount" name = "amt_money" placeholder="enter money amount">
-    </div>
-    <p style="visibility:hidden" class="postID"></p>
-  <div>
-    </form>
-      
-    <form id = "form3">
-   <button type="donbttn" style ="align:left;" onclick="donate()" name="don_or_loan" value = "Donation">Donate</button>
-    </form>
-                                                                                                      
-    <form id = "form4">
-   <button type="loanbttn" style="float:right;" onclick="loan()" name="don_or_loan" value = "Loan">Loan</button>
+    <form id = "post_form" action="/hackathon2020/site/scripts/interestCalc.py" method="POST">
+  	<p1 class = "username" style="text-align:left;" name = "to">username</p1>
+    	<p2 class = "interestPercent" style="float:right;" name = "to">interest amount</p2>
+    	<br>
+    	<div style = "text-align: center;">
+   	<p3 class = "content" class = "p3">message content</p3>
+    	</div>
+    	<br>
+    	<div style  = "text-align: center;">
+   	<input type ="text" id ="amount" name ="amt_money" placeholder="enter money amount">
+    	<input style="visibility:hidden" class="postID" type="text">
+    	<input style="visibility:hidden" class="don_or_loan" name="don_or_loan" type="text" value="">
+	<input style="visibility:hidden" class="form_interestPercent" name="interestPercent" value="" type="text">
+	<input style="visibility:hidden" class="repayLength" name="repayLength" value="" type="text">
+	<input style="visibility:hidden" class="form_to" name="to" value="" type="text">
+    	</div>
+	<div>
+   	<button type="donbttn" style ="align:left;" onclick="donate(this)" value ="Donate">Donate</button>
+   	<button type="loanbttn" style="float:right;" onclick="loan(this)" value ="Loan">Loan</button>
+ 	</div>
      </form>
-                                                                                               
-    <p id="demo"></p>
- </div>
   </div>
  
   <div id="feed">
@@ -170,18 +158,18 @@ height: 80px;
 
 
   <script>
-  function donate()
+  function donate(btn)
   {
-     document.getElementById("form1").action = "/hackathon2020/site/scripts/interestCalc.py"; 
-     document.getElementById("form2").action = "/hackathon2020/site/scripts/interestCalc.py"; 
-     document.getElementById("form3").action = "/hackathon2020/site/scripts/interestCalc.py"; 
-                                                                                       
+     form = btn.parentElement.parentElement;
+     form.getElementsByClassName("don_or_loan")[0].value = "Donation"
+     from.submit();
   }
-  function loan()
+                                                                                       
+  function loan(btn)
   {
-     document.getElementById("form1").action = "/hackathon2020/site/scripts/interestCalc.py"; 
-     document.getElementById("form2").action = "/hackathon2020/site/scripts/interestCalc.py"; 
-     document.getElementById("form4").action = "/hackathon2020/site/scripts/interestCalc.py"; 
+     form = btn.parentElement.parentElement;
+     form.getElementsByClassName("don_or_loan")[0].value = "Loan"
+     from.submit();
   }
   
   </script>
