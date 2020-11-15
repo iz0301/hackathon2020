@@ -10,7 +10,7 @@ print("Content-Type: text/html\n\n")
 
 form = cgi.FieldStorage()
 if ("amt_money" not in form or "interestPercent" not in form or "don_or_loan" not in form or "repayLength" not in form or "to" not in form):
-    print("field not in form: " + str(form))
+    #print("field not in form: " + str(form))
     sys.exit(0)
 
 #A check: print("Hello " + form['username'].value)
@@ -32,6 +32,10 @@ def save_data(obj, objfilename, dirname):
     f = open(filename,'w')
     f.write(obj)
     f.close()
+#Dirname for the loaner:
+dirname = '/var/www/hack2020/'+username+'/'
+#Dirname for the one receiving the loan:
+dirname2 = '/var/www/hack2020/'+to+'/'
 
 #Define the function to calculate the financial data from the inputs:
 def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
@@ -41,6 +45,11 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
         numPayments = 0
         repayLength = 0
         intervalPay = 0
+        #For the loaner:
+        save_data(loan_stats, 'allLoans.txt', dirname)
+        #For the one receiving the loan:
+        save_data(loan_stats, 'loans_Received.txt', dirname2)
+        sys.exit(0)
     elif(don_or_loan != 'loan'):
         print("Must be a 'Donation' or a 'Loan', got: " + don_or_loan)
         sys.exit(0)
@@ -63,7 +72,7 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
 
 	#Formula
 	#A = P((1+r/n)^(n*t))
-	#   A = Total Repayment (totalPay)
+	#   A = Total Repayment (totalOwed)
 	#   P = Principal Loan Amount (principal)
 	#   r = Annual Interest Rate, as a decimal (interestRate)
 	#   n = Number of Payments per unit t [i.e. years] (numPayments)
@@ -71,7 +80,7 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
 
     totalOwed = amt_money*((1+interestRate/numPayments)**(numPayments*repayLength))
     #Now divide this by the total number of payments over all the years of the load to find the payment in each interval:
-    intervalPay = totalPay/(numPayments*repayLength)
+    intervalPay = totalOwed/(numPayments*repayLength)
 
     loan_stats = {'amt_money': amt_money, 'interestRate': interestRate, 'totalOwed': totalOwed, 'intervalPay': intervalPay, 'repayLength': repayLength}
     return loan_stats
@@ -104,13 +113,8 @@ else:
 #------------------------------------------------------------------------------
 calc_amounts(amt_money, interestPercent, don_or_loan, repayLength)
 #Now that we have all the stats and the interest for the loan, save the data to the correct files:
-#Dirname for the loaner:
-dirname = '/var/www/hack2020/'+username+'/'
-#Dirname for the one receiving the loan:
-dirname2 = '/var/www/hack2020/'+to+'/'
-
 #For the loaner:
 save_data(loan_stats, 'allLoans.txt', dirname)
 #For the one receiving the loan:
 save_data(loan_stats, 'loans_Received.txt', dirname2)
-#(not finished yet)
+
