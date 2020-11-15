@@ -68,46 +68,43 @@ dirname2 = '/var/www/hack2020/'+to+'/'
 def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
     # This program calculates repayments on an interest rate loan/mortgage, and stores the stats in a dictionary
     if(don_or_loan == 'donation'):
-        total_owed = 0
+        totalOwed = 0
         numPayments = 0
         repayLength = 0
         intervalPay = 0
-        #For the loaner:
-        save_data(loan_stats, 'allLoans.txt', dirname)
-        #For the one receiving the loan:
-        save_data(loan_stats, 'loans_Received.txt', dirname2)
+        flag = 1
         sys.exit(0)
     elif(don_or_loan != 'loan'):
         print("Must be a 'Donation' or a 'Loan', got: " + don_or_loan)
         sys.exit(0)
-
-    interval = "month"
-    #Could have options, but hard coded is easier.
-    #Convert the interest rate to a decimal number:
     interestRate = interestPercent / 100
+    if (flag != 1):
+        interval = "month"
+        #Could have options, but hard coded is easier.
+        #Convert the interest rate to a decimal number:
 
-    #working out the number of payments per year over the course of the loan period.
-    if (interval == "week"):
-        numPayments = 365.2422/7
-    elif (interval == "month"):
-        numPayments = 12
-    elif (interval == "year"):
-        numPayments = 1
-    else:
-        print("Invalid interval of payments. Try again.")
-        sys.exit(0)
+        #working out the number of payments per year over the course of the loan period.
+        if (interval == "week"):
+            numPayments = 365.2422/7
+        elif (interval == "month"):
+            numPayments = 12
+        elif (interval == "year"):
+            numPayments = 1
+        else:
+            print("Invalid interval of payments. Try again.")
+            sys.exit(0)
 
-	#Formula
-	#A = P((1+r/n)^(n*t))
-	#   A = Total Repayment (totalOwed)
-	#   P = Principal Loan Amount (principal)
-	#   r = Annual Interest Rate, as a decimal (interestRate)
-	#   n = Number of Payments per unit t [i.e. years] (numPayments)
-	#   t = Length of the loan [in years] (repayLength)
+        #Formula
+        #A = P((1+r/n)^(n*t))
+        #   A = Total Repayment (totalOwed)
+        #   P = Principal Loan Amount (principal)
+        #   r = Annual Interest Rate, as a decimal (interestRate)
+        #   n = Number of Payments per unit t [i.e. years] (numPayments)
+        #   t = Length of the loan [in years] (repayLength)
 
-    totalOwed = amt_money*((1+interestRate/numPayments)**(numPayments*repayLength))
-    #Now divide this by the total number of payments over all the years of the load to find the payment in each interval:
-    intervalPay = totalOwed/(numPayments*repayLength)
+        totalOwed = amt_money*((1+interestRate/numPayments)**(numPayments*repayLength))
+        #Now divide this by the total number of payments over all the years of the load to find the payment in each interval:
+        intervalPay = totalOwed/(numPayments*repayLength)
 
     loan_stats = {'amt_money': amt_money, 'interestRate': interestRate, 'totalOwed': totalOwed, 'intervalPay': intervalPay, 'repayLength': repayLength}
     return loan_stats
