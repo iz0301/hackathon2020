@@ -4,6 +4,9 @@ import os
 import pickle
 import json
 
+
+print('Content-Type: text/html\n\n')
+
 #Read the cookies that have been established:
 handler = {} # A dictionary which will house the cookie names and cookie values
 if 'HTTP_COOKIE' in os.environ:
@@ -28,6 +31,7 @@ else:
     print('not logged in')
     quit()
 
+
 #Define the mechanism to show posts, sorted by time:
 #Assume all users all following all users (for now):
 def show_jsonPosts(usernames): #If the assumption is dropped, a 'following' list would go here, too, to determine the usernames to loop through.
@@ -35,13 +39,18 @@ def show_jsonPosts(usernames): #If the assumption is dropped, a 'following' list
     #Returns: posts: a list of all the posts to be shown in the feed, in JSON format
     posts = []
     for u in usernames: #Each line of the usernames text file; or just a usernames array, as we will define it for now.
+        print('test1')
         dirname = '/var/www/hack2020/'+u+'/posts/'
-        for j in range(len(os.listdir(dirname))):
-            with open(dirname+'post'+j, 'rb') as f:
-                data = pickle.load(f)
-                post = json.dumps(data)
-                posts.append(post)
-                jsonposts[posts]
+        for j in range(1, 1+len(os.listdir(dirname))):
+            print(j)
+            print('test4')
+            data = pickle.load(dirname+'post'+str(j)+'.pkl')
+            print('blah')
+            post = json.dumps(data)
+            print(post)
+            print('test5')
+            posts.append(post)
+            jsonposts[posts]
     return jsonposts
 
 #Collect the posts:
