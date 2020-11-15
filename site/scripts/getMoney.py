@@ -1,3 +1,8 @@
+#!/usr/bin/python3 -u
+
+import os
+import json
+
 #------------------------------------------------------------------------------
 #Aside: Check all cookies
 #Read the cookies that have been established:
@@ -26,13 +31,13 @@ else:
     quit()
 #------------------------------------------------------------------------------
 loans = []
-file1 = open('/var/www/hack2020/'+username+'/'+'loans_received.txt', r)
-lines = file1.readLines()
-for line in lines():
-    loans[i] = json.loads(line)
-amt_money = sum(loans['amt_money'])
-monthly_amt_owed = sum(loans['intervalPay'])
-total_amt_owed = sum(loans['totalPay'])
+file1 = open('/var/www/hack2020/'+username+'/'+'loans_Received.txt', 'r')
+lines = file1.readlines()
+for line in lines:
+    loans.append(json.loads(line))
+amt_money = sum([float(d['amt_money']) for d in loans])
+monthly_amt_owed = sum([float(d['intervalPay']) for d in loans])
+total_amt_owed = sum([float(d['totalOwed']) for d in loans])
 print(amt_money)
 print(monthly_amt_owed)
 print(total_amt_owed)
