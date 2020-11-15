@@ -46,7 +46,7 @@ else:
 #Define the mechanism to save the following list to a text file:
 def save_following(obj, filename):
 	f = open(filename,'w')
-	for i in len(obj):
+	for i in range(len(obj)):
 		f.write(obj[i])
 	f.close()
 
