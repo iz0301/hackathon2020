@@ -5,7 +5,8 @@ import sys
 import os
 import time
 import datetime
-import pickle
+import json
+#import pickle
 #import numpy as np
 
 cgitb.enable()
@@ -48,7 +49,7 @@ else:
 #Define the mechanism to save posts' data to a file:
 def save_postdata(obj, filename):
     with open(filename, 'wb') as output:  # Overwrites any existing file.
-        pickle.dump(obj, output, pickle.HIGHEST_PROTOCOL)
+        json.dumps(obj, output)
 
 #Class to generate a post and its data:
 class genPost:
@@ -86,4 +87,4 @@ post = genPost(username, content_in, interestPercent_in)
 #print(post.date)
 
 #Save the post:
-save_postdata(post, '/var/www/hack2020/'+post.username+'/posts/post'+str(post.postID)+'.pkl')
+save_postdata(post, '/var/www/hack2020/'+post.username+'/posts/post'+str(post.postID)+'.json')
