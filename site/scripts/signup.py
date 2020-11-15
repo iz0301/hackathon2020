@@ -24,18 +24,18 @@ def save_password(obj, filename):
 	f.write(obj)
 	f.close()
 
-#If the username folder is not created yet, create it, and the password.txt file:
+#If the username folder is not created yet, create it, and the password.txt, and the posts directory:
 if not os.path.exists('/var/www/hack2020/'+username+'/'):
     os.mkdir('/var/www/hack2020/'+username+'/')
+    os.mkdir('/var/www/hack2020/'+username+'/posts/')
     save_password(password, '/var/www/hack2020/'+username+'/'+'password.txt')
 else:
     print("Content-Type: text/html\n\n")
-    print('You are already signed up. Contact an administrator if you forgot your password.')
+    print('You are already signed up. Contact an administrator if you forgot your password. Otherwise, we will log you in now.')
     quit()
 
 #Now, log them in straight away:
 #A check: print("Hello " + form['username'].value +" "+ form['lastname'].value)
-
 
 #Check the username and password against a user folder:
 passwordfilename = '/var/www/hack2020/'+username+'/'+'password.txt'
