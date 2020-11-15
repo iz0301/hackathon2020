@@ -24,12 +24,12 @@ getJSON('/hackathon2020/site/scripts/all_users.py',  function(err, ppl) {
 		el.getElementsByClassName('name')[0].innerHTML = un;
 		b = el.getElementsByClassName('input_box')[0];
 		b.value = un;
+		b.checked = true;
 		if (data.is_friend == '1') {
-		   b.checked = true;	
+			b.setAttribute('checked',true)
 		} else {
-		   b.checked = false;
+			b.setAttribute('checked',false)
 		}
-		alert(b.outerHTML);
 		document.getElementById('friend_list').innerHTML += el.innerHTML;
 	}	
 	});
