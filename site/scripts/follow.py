@@ -13,12 +13,10 @@ if "username" not in form:
     print("username not in form")
     sys.exit(0)
 
-value = form.getlist("username")
-print(type(value))
-print(value)
-following = ",".join(value)
-print(type(following))
-print(following)
+folowing_value = form.getlist("username")
+#print(value)
+following = ",".join(folowing_value)
+#print(following)
 
 
 #Read the cookies that have been established:
@@ -53,5 +51,4 @@ def save_following(obj, filename):
 	f.close()
 
 
-save_following(following, '/var/www/hack2020/'+username+'/'+'following.txt')
-
+save_following(following_value, '/var/www/hack2020/'+username+'/'+'following.txt')
