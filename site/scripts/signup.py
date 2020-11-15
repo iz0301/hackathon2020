@@ -17,8 +17,24 @@ if "username" not in form or "password" not in form:
 #A check: print("Hello " + form['username'].value)
 username = form['username'].value
 password = form['password'].value
+#Make variables to make a starting loan of 1000:
 amt_money = 1000 #Default starting money value - substitute for linking your bank account
-
+totalOwed = 0
+numPayments = 0
+repayLength = 0
+intervalPay = 0
+interestPercent = 0
+loan_stats = {'amt_money': amt_money, 'interestRate': interestPercent / 100, 'totalOwed': 0, 'intervalPay': 0, 'repayLength': 0}
+#Define the mechanism to save loans' data to the correct files:
+def save_data(obj, objfilename, dirname):
+    #Dir name will be the username folder, since all our stats are text files within that folder
+    filename = dirname + objfilename
+    f = open(filename,'a')
+    f.write(json.dumps(obj)+'\n')
+    f.close()
+#Dirname for the one receiving the loan:
+dirname = '/var/www/hack2020/'+username+'/'
+save_data(loan_stats, 'loans_Received.txt', dirname)
 #Define the mechanism to save posts' data to a file:
 def save_data(obj, filename):
 	f = open(filename,'w')
