@@ -112,7 +112,7 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
     loan_stats = {'amt_money': amt_money, 'interestRate': interestRate, 'totalOwed': totalOwed, 'intervalPay': intervalPay, 'repayLength': repayLength}
     return loan_stats
 
-calc_amounts(amt_money, interestPercent, don_or_loan, repayLength)
+loan_stats = calc_amounts(amt_money, interestPercent, don_or_loan, repayLength)
 #Now that we have all the stats and the interest for the loan, save the data to the correct files:
 #For the loaner:
 save_data(loan_stats, 'allLoans.txt', dirname)
