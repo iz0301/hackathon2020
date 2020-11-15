@@ -2,6 +2,7 @@
 import cgi
 import cgitb
 import sys
+import json
 import os
 
 cgitb.enable()
@@ -32,11 +33,6 @@ def save_data(obj, filename):
     f.write(obj)
     f.close()
 
-def save_data2(obj, filename):
-    f = open(filename,'a')
-    f.write(json.dumps(obj)+'\n')
-    f.close()
-
 empty_field = None
 #If the username folder is not created yet, create it, and create some txt files. Also, make the posts directory:
 #Dirname for the one receiving the loan:
@@ -45,10 +41,10 @@ if not os.path.exists(dirname):
     os.mkdir(dirname)
     os.mkdir(dirname+'/posts/')
     save_data(password, dirname+'password.txt')
-    save_data(amt_money, dirname+'amt_money.txt')
-    save_data(empty_field, dirname+'allLoans.txt')
-    save_data(empty_field, dirname+'following.txt')
-    save_data2(loan_stats, dirname+'loans_Received.json')
+    save_data("", dirname+'amt_money.txt')
+    save_data("", dirname+'allLoans.txt')
+    save_data("", dirname+'following.txt')
+    save_data(json.dumps(loan_stats)+'\n', dirname+'loans_Received.txt')
 else:
     print("Content-Type: text/html\n\n")
     print('You are already signed up. Contact an administrator if you forgot your password. Otherwise, we will log you in now.')

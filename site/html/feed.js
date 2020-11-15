@@ -34,3 +34,14 @@ getJSON('/hackathon2020/site/scripts/sortPosts.py',  function(err, posts) {
 	}	
 	});
 
+getJSON('/hackathon2020/site/scripts/getMoney.py',  function(err, val) {
+	// amt money, owed/mont, total owed
+
+	var amt = val.split('\n')[1];
+	var monthly = val.split('\n')[2];
+	var total = val.split('\n')[3];
+	document.getElementById('moneyamt').innerHTML = '$' + Math.round(amt);
+	//document.getElementById('moneyamt').innerHTML = '$' + monthly;
+	document.getElementById('owedamt').innerHTML = '$' + Math.round(total);
+});
+
