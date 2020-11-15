@@ -1,7 +1,6 @@
 #!/usr/bin/python3 -u
 import sys
 import os
-import pickle
 import json
 
 print('Content-Type: text/html\n\n')
@@ -42,8 +41,8 @@ def show_jsonPosts(usernames): #If the assumption is dropped, a 'following' list
         dirname = '/var/www/hack2020/'+u+'/posts/'
         for j in range(1, 1 + len(os.listdir(dirname))):
             with open(dirname+'post'+str(j), 'rb') as f:
-                data = pickle.load(f)
-                post = json.dumps(data)
+                data = json.load(f)
+                post = json.dump(data)
                 posts.append(post)
     return posts
 
