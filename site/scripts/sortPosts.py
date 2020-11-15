@@ -51,7 +51,7 @@ def show_jsonPosts(following):
 f = open('/var/www/hack2020/'+username+'/'+'following.txt', 'r') 
 followed_users = f.readlines() 
 f.close()
-following = [followed_users[i] for i in range(len(followed_users))]
+following = [followed_users[i].strip() for i in range(len(followed_users))]
 feed_posts = show_jsonPosts(following)
 print("{",end="")
 for i, p in enumerate(feed_posts):

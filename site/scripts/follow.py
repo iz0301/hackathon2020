@@ -47,7 +47,7 @@ else:
 def save_following(obj, filename):
 	f = open(filename,'w')
 	for i in range(len(obj)):
-		f.write(obj[i])
+		f.write(obj[i] + '\n')
 	f.close()
 
 
