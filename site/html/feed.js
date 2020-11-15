@@ -1,16 +1,3 @@
-<!DOCTYPE html>
-
-<div style="visibility:hidden" id="generic_post">
-	<p class="username">NAME</p>
-	<p class="content">CONTENT</p>
-	<p class="interestPercent">IP%</p>
-	<p style="visibility:hidden" class="postID"></p>
-</div>
-
-<div id="feed">
-</div>
-
-<script>
 function getJSON(url, callback) {
 var xhr = new XMLHttpRequest();
 xhr.open('GET', url, true);
@@ -44,4 +31,3 @@ getJSON('/hackathon2020/site/scripts/sortPosts.py',  function(err, posts) {
 	}	
 	});
 
-</script>
