@@ -30,11 +30,12 @@ else:
     quit()
 
 
-f = open('/var/www/hack2020/'+username+'/'+'following.txt', 'r') 
+f = open('/var/www/hack2020/'+username.strip()+'/'+'following.txt', 'r') 
 followed_users = f.readlines() 
 f.close()
 following = [followed_users[i].strip() for i in range(len(followed_users))]
 all_users = {}
+
 for i, un in enumerate(os.listdir('/var/www/hack2020/')):
     all_users[i] = {}
     all_users[i]['username'] = un
