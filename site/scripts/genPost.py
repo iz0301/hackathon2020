@@ -12,16 +12,19 @@ import json
 cgitb.enable()
 
 form = cgi.FieldStorage()
-if "content" not in form or "interestPercent" not in form:
+if "content" not in form or "interest" not in form:
     print("Content-Type: text/html\n\n")
     sys.exit(0)
 
 print("Content-Type: text/html\n\n")
 
+
 #A check: print("Hello " + form['username'].value)
 content_in = form['content'].value
 interestPercent_in = form['interest'].value
-amt_money_in = form['amt_money'].value
+#amt_money_in = form['amt_money'].value
+amt_money_in = 100
+
 
 #Read the cookies that have been established:
 handler = {}
