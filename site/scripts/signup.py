@@ -29,7 +29,6 @@ loan_stats = {'amt_money': amt_money, 'interestRate': interestPercent / 100, 'to
 #Define the mechanism to save loans' data to the correct files:
 def save_data(obj, filename):
     #Dir name will be the username folder, since all our stats are text files within that folder
-    filename = dirname + objfilename
     f = open(filename,'a')
     f.write(json.dumps(obj)+'\n')
     f.close()
@@ -41,11 +40,11 @@ dirname = '/var/www/hack2020/'+username+'/'
 if not os.path.exists(dirname):
     os.mkdir(dirname)
     os.mkdir(dirname+'/posts/')
-    save_data(password, dirname+'/password.txt')
-    save_data(amt_money, dirname+'/amt_money.txt')
-    save_data(empty_field, dirname+'/allLoans.txt')
-    save_data(empty_field, dirname+'/following.txt')
-    save_data(loan_stats, dirname+'/loans_Received.txt')
+    save_data(password, dirname+'password.txt')
+    save_data(amt_money, dirname+'amt_money.txt')
+    save_data(empty_field, dirname+'allLoans.txt')
+    save_data(empty_field, dirname+'following.txt')
+    save_data(loan_stats, dirname+'loans_Received.txt')
 else:
     print("Content-Type: text/html\n\n")
     print('You are already signed up. Contact an administrator if you forgot your password. Otherwise, we will log you in now.')
