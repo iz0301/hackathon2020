@@ -3,6 +3,7 @@ import cgi
 import cgitb
 import json
 import sys
+import os
 
 cgitb.enable()
 print("Content-Type: text/html\n\n")
@@ -15,6 +16,7 @@ if "username" not in form:
 value = form.getlist("username")
 print(type(value))
 following = ",".join(value)
+print(type(following))
 
 
 #Read the cookies that have been established:
@@ -47,6 +49,7 @@ def save_following(obj, filename):
 	for i in len(obj):
 		f.write(obj[i])
 	f.close()
+
 
 save_following(following, '/var/www/hack2020/'+username+'/'+'following.txt')
 
