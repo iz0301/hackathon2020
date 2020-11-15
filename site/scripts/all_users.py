@@ -30,7 +30,7 @@ else:
     quit()
 
 
-f = open('/var/www/hack2020/'+username.strip()+'/'+'following.txt', 'r') 
+f = open('/var/www/hack2020/'+username.strip()+'/'+'following.txt', 'r')
 followed_users = f.readlines() 
 f.close()
 following = [followed_users[i].strip() for i in range(len(followed_users))]
