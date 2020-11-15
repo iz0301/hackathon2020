@@ -15,7 +15,7 @@ if "username" not in form:
 
 following_value = form.getlist("username")
 #print(value)
-following = ",".join(folowing_value)
+following = ",".join(following_value)
 #print(following)
 
 
