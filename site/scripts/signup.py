@@ -25,15 +25,16 @@ def save_data(obj, filename):
 	f.write(obj)
 	f.close()
 
-empty_money = None
-#If the username folder is not created yet, create it, and create the password.txt and amt_money.txt files. Also, make the posts directory:
+empty_field = None
+#If the username folder is not created yet, create it, and create some txt files. Also, make the posts directory:
 if not os.path.exists('/var/www/hack2020/'+username+'/'):
     os.mkdir('/var/www/hack2020/'+username+'/')
     os.mkdir('/var/www/hack2020/'+username+'/posts/')
     save_data(password, '/var/www/hack2020/'+username+'/'+'password.txt')
     save_data(amt_money, '/var/www/hack2020/'+username+'/'+'amt_money.txt')
-    save_data(empty_money, '/var/www/hack2020/'+username+'/'+'loans_out.txt')
-    save_data(empty_money, '/var/www/hack2020/'+username+'/'+'loans_received.txt')
+    save_data(empty_field, '/var/www/hack2020/'+username+'/'+'loans_out.txt')
+    save_data(empty_field, '/var/www/hack2020/'+username+'/'+'loans_received.txt')
+    save_data(empty_field, '/var/www/hack2020/'+username+'/'+'following.txt')
 else:
     print("Content-Type: text/html\n\n")
     print('You are already signed up. Contact an administrator if you forgot your password. Otherwise, we will log you in now.')
