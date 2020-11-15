@@ -115,9 +115,9 @@ height: 80px;
 
 <div class="navbar">
   <a class="active" href="#homeaddress">Home</a>
-  <a href="file:///C:/Users/sgrcr/Documents/NavigatePage.html">Lends Out</a>
+  <a href="/hackathon2020/site/html/NavigatePage.html">Lends Out</a>
   <a href="address2">Posted Lends</a>
-<a href="file:///C:/Users/sgrcr/Documents/FollowersPage.html">Friends</a>
+<a href="/hackathon2020/site/html/FollowersPage.html">Friends</a>
  <a href="address3">Make a Post</a>
 
 </div>
@@ -125,6 +125,11 @@ height: 80px;
 
   	<div class="main">
 <form action="/hackathon2020/site/scripts/genPost.py" method="post">
+   
+    <div style  = "text-align: center;">
+     <input type = "text" id = "content" name = "amt_money" placeholder="enter your money goal">
+    </div>
+   
     <div style = "text-align: center;">
     <input type = "text" id = "interest" name = "interest" placeholder="enter interest amount">
     </div>
@@ -133,8 +138,8 @@ height: 80px;
     <div style  = "text-align: center;">
      <input type = "text" id = "content" name = "content" placeholder="enter your message">
     </div>
-  
-   <div style  = "text-align: center;">
+
+    <div style  = "text-align: center;">
    <button type="submit" onclick="d">Post</button>
    </div>
 </form>
