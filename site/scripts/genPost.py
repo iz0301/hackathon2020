@@ -49,15 +49,13 @@ else:
 #Define the mechanism to save posts' data to a file:
 def save_postdata(post, filename):
     data = {}
-    data.append({
-        'username': post.username,
-        'content': post.content,
-        'interestPercent': post.interestPercent,
-        'postID': post.postID,
-        'loans': post.loans,
-        'whoLoaned': post.whoLoaned,
-        'date': post.date
-    })
+    data['username'] = post.username
+    data['content'] = post.content
+    data['interestPercent'] = post.interestPercent
+    data['postID'] = post.postID
+    data['loans'] = post.loans
+    data['whoLoaned'] = post.whoLoaned
+    data['date'] = post.date
     with open(filename, 'wb') as outfile:  # Overwrites any existing file.
         json.dumps(data, outfile)
 
