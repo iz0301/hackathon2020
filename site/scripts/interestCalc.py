@@ -15,7 +15,7 @@ if ("amt_money" not in form or "interestPercent" not in form or "don_or_loan" no
 #A check: print("Hello " + form['username'].value)
 amt_money = form['amt_money'].value
 interestPercent = form['interestPercent'].value
-don_or_loan = form['don_or_loan'].value
+don_or_loan = form['don_or_loan'].value.lowercase()
 repayLength = form['repayLength'].value
 to = form['to'].value
 
@@ -35,12 +35,12 @@ def save_data(obj, objfilename, dirname):
 #Define the function to calculate the financial data from the inputs:
 def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
     # This program calculates repayments on an interest rate loan/mortgage, and stores the stats in a dictionary
-    if(don_or_loan == 'Donation'):
+    if(don_or_loan == 'lonation'):
         total_owed = 0
         numPayments = 0
         repayLength = 0
         intervalPay = 0
-    elif(don_or_loan != 'Loan'):
+    elif(don_or_loan != 'loan'):
         print("Must be a 'Donation' or a 'Loan'")
         sys.exit(0)
 
