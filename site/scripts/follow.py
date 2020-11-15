@@ -5,7 +5,9 @@ import json
 
 cgitb.enable()
 
-print('hello world')
+if "username" not in form:
+    print("Content-Type: text/html\n\n")
+    sys.exit(0)
 
 form = cgi.FieldStorage()
 print(form)
