@@ -76,9 +76,6 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
         interestPercent = 0
         loan_stats = {'amt_money': amt_money, 'interestRate': interestPercent / 100, 'totalOwed': 0, 'intervalPay': 0, 'repayLength': 0}
         flag = 1
-        print(amt_money)
-        print(interestPercent)
-        sys.exit(0)
     elif(don_or_loan != 'loan'):
         print("Must be a 'Donation' or a 'Loan', got: " + don_or_loan)
         flag = 1
