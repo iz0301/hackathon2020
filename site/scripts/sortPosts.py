@@ -47,8 +47,11 @@ def show_jsonPosts(following):
     return posts
 
 #Collect the posts:
-#For now, define the list of all usernames as the following list:
-following = ['clarkvan33', 'caldrich', 'sylvia', 'isaac']
+#Define the following list:
+f = open('/var/www/hack2020/'+username+'/'+'following.txt', 'r') 
+followed_users = f.readlines() 
+f.close()
+following = [followed_users[i] for i in range(len(followed_users))]
 feed_posts = show_jsonPosts(following)
 print("{",end="")
 for i, p in enumerate(feed_posts):
