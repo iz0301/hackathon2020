@@ -42,7 +42,7 @@ def show_jsonPosts(usernames): #If the assumption is dropped, a 'following' list
             continue
         for j in range(1, 1 + len(os.listdir(dirname))):
             with open(dirname+'post'+str(j)+'.json', 'r') as f:
-                data = json.load(f)
+                data = f.read()
                 posts.append(data)
     return posts
 
@@ -50,5 +50,9 @@ def show_jsonPosts(usernames): #If the assumption is dropped, a 'following' list
 #For now, define the list of all usernames:
 usernames = ['clarkvan33', 'caldrich', 'sylvia', 'isaac']
 feed_posts = show_jsonPosts(usernames)
-for p in feed_posts:
-    print(str(p)+'\n')
+print("{",end="")
+for i, p in enumerate(feed_posts):
+    print('\"post' + str(i) + '":' + str(p), end="")
+    if not i == len(feed_posts)-1:
+        print(',',end="")
+print("}", end="")
