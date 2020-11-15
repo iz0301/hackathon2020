@@ -20,7 +20,7 @@ print("Content-Type: text/html\n\n")
 
 #A check: print("Hello " + form['username'].value)
 content_in = form['content'].value
-interestPercent_in = form['interestPercent'].value
+interestPercent_in = form['interest'].value
 amt_money_in = form['amt_money'].value
 
 #Read the cookies that have been established:
