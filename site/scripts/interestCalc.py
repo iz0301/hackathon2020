@@ -35,7 +35,7 @@ def save_data(obj, objfilename, dirname):
 #Define the function to calculate the financial data from the inputs:
 def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
     # This program calculates repayments on an interest rate loan/mortgage, and stores the stats in a dictionary
-    if(don_or_loan == 'lonation'):
+    if(don_or_loan == 'donation'):
         total_owed = 0
         numPayments = 0
         repayLength = 0
