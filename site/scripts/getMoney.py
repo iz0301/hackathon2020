@@ -41,4 +41,3 @@ total_amt_owed = sum([float(d['totalOwed']) for d in loans])
 print(amt_money)
 print(monthly_amt_owed)
 print(total_amt_owed)
-
