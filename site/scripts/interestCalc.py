@@ -56,8 +56,8 @@ repayLength = float(repayLength)
 def save_data(obj, objfilename, dirname):
     #Dir name will be the username folder, since all our stats are text files within that folder
     filename = dirname + objfilename
-    f = open(filename,'w')
-    f.write(json.dumps(obj))
+    f = open(filename,'a')
+    f.write(json.dumps(obj)+'\n')
     f.close()
 #Dirname for the loaner:
 dirname = '/var/www/hack2020/'+username+'/'
