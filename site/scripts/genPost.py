@@ -47,19 +47,26 @@ else:
     quit()
 
 #Define the mechanism to save posts' data to a file:
-def save_postdata(obj, filename):
-    with open(filename, 'wb') as output:  # Overwrites any existing file.
-        json.dumps(obj, output)
+def save_postdata(post, filename):
+    data = {}
+    data.append({
+        'username': post.username,
+        'content': post.content,
+        'interestPercent': post.interestPercent,
+        'postID': post.postID,
+        'loans': post.loans,
+        'whoLoaned': post.whoLoaned,
+        'date': post.date
+    })
+    with open(filename, 'wb') as outfile:  # Overwrites any existing file.
+        json.dumps(data, outfile)
 
 #Class to generate a post and its data:
 class genPost:
     username = ""
     content = ""
-    principal = 0
     interestPercent = 0
     postID = 0
-    likes = 0
-    whoLiked = []
     loans = {}
     whoLoaned = []
     date = ""
