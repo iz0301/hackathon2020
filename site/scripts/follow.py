@@ -6,6 +6,7 @@ import json
 cgitb.enable()
 
 form = cgi.FieldStorage()
+print(form)
 value = form.getlist("username")
 following = ",".join(value)
 
