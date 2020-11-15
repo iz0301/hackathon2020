@@ -120,7 +120,7 @@ input{
   <p class="name" style="display:inline"></p>
   <br>
 </div>	
- <form action="/hackathon2020/site/scripts/follow.py" method="POST">
+ <form action="/hackathon2020/site/scripts/follow.py" method="POST" target="hiddenFrame">
 
   <div id="friend_list">
  </div>
@@ -130,4 +130,6 @@ input{
 <script src="follow_list.js"></script>
   
   </body>
+<iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
 </html>
+
