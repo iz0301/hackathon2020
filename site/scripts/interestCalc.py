@@ -74,6 +74,7 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
         repayLength = 0
         intervalPay = 0
         interestPercent = 0
+        loan_stats = {'amt_money': amt_money, 'interestRate': interestPercent / 100, 'totalOwed': 0, 'intervalPay': 0, 'repayLength': 0}
         flag = 1
         print(amt_money)
         print(interestPercent)
@@ -109,8 +110,7 @@ def calc_amounts(amt_money, interestPercent, don_or_loan, repayLength):
         totalOwed = amt_money*((1+interestRate/numPayments)**(numPayments*repayLength))
         #Now divide this by the total number of payments over all the years of the load to find the payment in each interval:
         intervalPay = totalOwed/(numPayments*repayLength)
-
-    loan_stats = {'amt_money': amt_money, 'interestRate': interestRate, 'totalOwed': totalOwed, 'intervalPay': intervalPay, 'repayLength': repayLength}
+        loan_stats = {'amt_money': amt_money, 'interestRate': interestRate, 'totalOwed': totalOwed, 'intervalPay': intervalPay, 'repayLength': repayLength}
     return loan_stats
 
 loan_stats = calc_amounts(amt_money, interestPercent, don_or_loan, repayLength)
