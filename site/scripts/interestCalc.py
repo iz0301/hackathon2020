@@ -15,7 +15,7 @@ if ("amt_money" not in form or "interestPercent" not in form or "don_or_loan" no
 #A check: print("Hello " + form['username'].value)
 amt_money = form['amt_money'].value
 interestPercent = form['interestPercent'].value
-don_or_loan = form['don_or_loan'].value.lowercase()
+don_or_loan = form['don_or_loan'].value.lower()
 repayLength = form['repayLength'].value
 to = form['to'].value
 
