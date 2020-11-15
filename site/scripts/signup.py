@@ -8,8 +8,8 @@ cgitb.enable()
 
 form = cgi.FieldStorage()
 if "username" not in form or "password" not in form:
-    print('Set-Cookie: username=');
-    print('Set-Cookie: password=');
+    print('Set-Cookie: username=; Path=/');
+    print('Set-Cookie: password=; Path=/');
     print("Content-Type: text/html\n\n")
     sys.exit(0)
 
@@ -46,14 +46,14 @@ with open(passwordfilename, 'r') as file:
 
 if password_from_file.strip() == password.strip():
     #print("Login successful, " + username_in)
-    print('Set-Cookie: logged_in=1');
-    print('Set-Cookie: username=' + username);
-    print('Set-Cookie: password=' + password.strip());
+    print('Set-Cookie: logged_in=1; Path=/');
+    print('Set-Cookie: username=' + username+ "; Path=/");
+    print('Set-Cookie: password=' + password.strip() + "; Path=/");
 else:
     #print("Login unsuccessful, " + username_in)
-    print('Set-Cookie: logged_in=0');
-    print('Set-Cookie: username=' + username);
-    print('Set-Cookie: password=' + password.strip());
+    print('Set-Cookie: logged_in=0; Path=/');
+    print('Set-Cookie: username=' + username + "; Path=/");
+    print('Set-Cookie: password=' + password.strip() + "; Path=/");
 
 
 print("Content-Type: text/html\n\n")
