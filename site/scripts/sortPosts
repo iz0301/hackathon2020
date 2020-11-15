@@ -30,7 +30,7 @@ else:
 
 #Define the mechanism to show posts, sorted by time:
 #Assume all users all following all users (for now):
-def save_postdata(usernames): #If the assumption is dropped, a 'following' list would go here, too, to determine the usernames to loop through.
+def show_jsonPosts(usernames): #If the assumption is dropped, a 'following' list would go here, too, to determine the usernames to loop through.
     #Note: 'usernames' is the list of all usernames whose posts you want to see
     #Returns: posts: a list of all the posts to be shown in the feed, in JSON format
     posts = []
@@ -47,4 +47,5 @@ def save_postdata(usernames): #If the assumption is dropped, a 'following' list 
 #Collect the posts:
 #For now, define the list of all usernames:
 usernames = ['clarkvan33', 'caldrich', 'sylvia', 'isaac']
-feed_posts = save_postdata(usernames)
+feed_posts = show_jsonPosts(usernames)
+print(feed_posts)
