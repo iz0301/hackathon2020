@@ -8,6 +8,7 @@ if 'HTTP_COOKIE' in os.environ:
     for cookie in cookies:
         cookie = cookie.split('=')
         handler[cookie[0]] = cookie[1]
+print("Content-Type: text/html\n\n")
 #handler now has all 3 cookies we want.
 #Now, do checks with these cookies:
 username = ""
@@ -30,4 +31,9 @@ lines = file1.readLines()
 for line in lines():
     loans[i] = json.loads(line)
 amt_money = sum(loans['amt_money'])
+monthly_amt_owed = sum(loans['intervalPay'])
+total_amt_owed = sum(loans['totalPay'])
 print(amt_money)
+print(monthly_amt_owed)
+print(total_amt_owed)
+
