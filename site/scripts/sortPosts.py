@@ -47,7 +47,7 @@ def show_jsonPosts(following):
     return posts
 
 #Collect the posts:
-#Define the following list:
+#Define the 'following' list:
 f = open('/var/www/hack2020/'+username+'/'+'following.txt', 'r') 
 followed_users = f.readlines() 
 f.close()

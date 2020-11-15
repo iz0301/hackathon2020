@@ -15,8 +15,10 @@ if "username" not in form:
 
 value = form.getlist("username")
 print(type(value))
+print(value)
 following = ",".join(value)
 print(type(following))
+print(following)
 
 
 #Read the cookies that have been established:
