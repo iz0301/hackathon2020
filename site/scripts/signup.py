@@ -13,7 +13,6 @@ if "username" not in form or "password" not in form:
     print("Content-Type: text/html\n\n")
     sys.exit(0)
 
-print("Content-Type: text/html\n\n")
 
 #A check: print("Hello " + form['username'].value)
 username = form['username'].value
@@ -21,20 +20,22 @@ password = form['password'].value
 
 #Define the mechanism to save posts' data to a file:
 def save_password(obj, filename):
-	f = open('filename','w')
-	f.write(password)
+	f = open(filename,'w')
+	f.write(obj)
 	f.close()
-
 
 #If the username folder is not created yet, create it, and the password.txt file:
 if not os.path.exists('/var/www/hack2020/'+username+'/'):
     os.mkdir('/var/www/hack2020/'+username+'/')
     save_password(password, '/var/www/hack2020/'+username+'/'+'password.txt')
 else:
- 	print('You are already signed up. Contact an administrator if you forgot your password.')
+    print("Content-Type: text/html\n\n")
+    print('You are already signed up. Contact an administrator if you forgot your password.')
+    quit()
 
 #Now, log them in straight away:
 #A check: print("Hello " + form['username'].value +" "+ form['lastname'].value)
+
 
 #Check the username and password against a user folder:
 passwordfilename = '/var/www/hack2020/'+username+'/'+'password.txt'
