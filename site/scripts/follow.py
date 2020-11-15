@@ -2,16 +2,19 @@
 import cgi
 import cgitb
 import json
+import sys
+
 
 cgitb.enable()
-
-if "username" not in form:
-    print("Content-Type: text/html\n\n")
-    sys.exit(0)
+print("Content-Type: text/html\n\n")
 
 form = cgi.FieldStorage()
-print(form)
+if "username" not in form:
+    print("username not in form")
+    sys.exit(0)
+
 value = form.getlist("username")
+print(value)
 following = ",".join(value)
 
-print("Content-Type: text/html\n\n")
+
