@@ -13,7 +13,7 @@ if "username" not in form:
     print("username not in form")
     sys.exit(0)
 
-folowing_value = form.getlist("username")
+following_value = form.getlist("username")
 #print(value)
 following = ",".join(folowing_value)
 #print(following)
