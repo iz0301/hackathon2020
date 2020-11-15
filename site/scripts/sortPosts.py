@@ -35,7 +35,8 @@ def show_jsonPosts(following):
     #Note: 'usernames' is the list of all usernames whose posts you want to see (followed users)
     #Returns: posts: a list of all the posts to be shown in the feed, in JSON format
     posts = []
-    for u in usernames: #Each line of the usernames text file; or just a usernames array, as we will define it for now.
+
+    for u in following: #Each line of the usernames text file; or just a usernames array, as we will define it for now.
         dirname = '/var/www/hack2020/'+u+'/posts/'
         if not os.path.exists(dirname):
             continue
@@ -48,7 +49,7 @@ def show_jsonPosts(following):
 #Collect the posts:
 #For now, define the list of all usernames as the following list:
 following = ['clarkvan33', 'caldrich', 'sylvia', 'isaac']
-feed_posts = show_jsonPosts(usernames)
+feed_posts = show_jsonPosts(following)
 print("{",end="")
 for i, p in enumerate(feed_posts):
     print('\"post' + str(i) + '":' + str(p), end="")
