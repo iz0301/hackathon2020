@@ -48,7 +48,7 @@ if not os.path.exists(dirname):
     save_data(amt_money, dirname+'amt_money.txt')
     save_data(empty_field, dirname+'allLoans.txt')
     save_data(empty_field, dirname+'following.txt')
-    save_data2(loan_stats, dirname+'loans_Received.txt')
+    save_data2(loan_stats, dirname+'loans_Received.json')
 else:
     print("Content-Type: text/html\n\n")
     print('You are already signed up. Contact an administrator if you forgot your password. Otherwise, we will log you in now.')
